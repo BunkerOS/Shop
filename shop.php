@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 function getapp($json=false){
+    global $bdd;
     $select = $bdd->query("SELECT * FROM  `app` LIMIT 0 , 30")->fetchAll();
     if(!$json == false){
         $select = json_encode($select);
@@ -9,6 +10,7 @@ function getapp($json=false){
 }
 
 function new_app( $app, $auteur, $description ,$path){
+    global $bdd;
     $bdd->query("INSERT INTO `app` (`id`, `app`, `auteur`, `description`, `path`) VALUES (NULL, ".$app.", '".$auteur."', '".$description."','".$path."');");
 }
 
