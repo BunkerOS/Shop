@@ -8,8 +8,8 @@ function getapp($json=false){
     return $select ;
 }
 
-function new_app( $app, $auteur, $description){
-    $bdd->query("INSERT INTO `app` (`id`, `app`, `auteur`, `description`) VALUES (NULL, ".$app.", '".$auteur."', '".$description."');");
+function new_app( $app, $auteur, $description ,$path){
+    $bdd->query("INSERT INTO `app` (`id`, `app`, `auteur`, `description`, `path`) VALUES (NULL, ".$app.", '".$auteur."', '".$description."','".$path."');");
 }
 
 if (isset($_GET['api'])){
@@ -20,13 +20,16 @@ if (isset($_GET['api'])){
         //Mode Client Web
         //echo getapp();
         include('header.php');
-        ?>
-        
-        <?php
+        foreach (getapp(false) as $item){
+           echo $item['app'];
+           echo $item['app'];
+           echo $item['app'];
+           echo "<hr><br>";
+        }
         include('footer.php');
     }
 }else{
-    header('Location: /?api=false');
+    header('Location: shop.php?api=false');
 }
 
 
