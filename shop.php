@@ -22,12 +22,17 @@ if (isset($_GET['api'])){
         //Mode Client Web
         //echo getapp();
         include('header.php');
+        echo '<div class="container">';
         foreach (getapp(false) as $item){
-           echo $item['app'];
-           echo $item['app'];
-           echo $item['app'];
+           echo "Nom de l'application: ". $item['app'];
+           echo '<br>';
+           echo "Auteur: ". $item['auteur'];
+           echo '<br>';
+           echo "Description de l'application: ". $item['description'];
+           echo '<br>';
            echo "<hr><br>";
         }
+        echo'</div>';
         include('footer.php');
     }
 }else{
