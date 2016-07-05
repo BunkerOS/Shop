@@ -1,30 +1,18 @@
 <?php
-include("config.php");
-function getapp($json=false){
-    global $bdd;
-    $select = $bdd->query("SELECT * FROM  `app` LIMIT 0 , 30")->fetchAll();
-    if(!$json == false){
-        $select = json_encode($select);
-    }
-    return $select ;
-}
-
-function new_app( $app, $auteur, $description ,$path){
-    global $bdd;
-    $bdd->query("INSERT INTO `app` (`id`, `app`, `auteur`, `description`, `path`) VALUES (NULL, ".$app.", '".$auteur."', '".$description."','".$path."');");
-}
 
 if (isset($_GET['api'])){
     if($_GET['api'] == 'true') {
         //Mode API
+        include('config.php');
         echo getapp(true);
     }else{
         //Mode Client Web
         //echo getapp();
         include('header.php');
         echo '<div class="container">';
+        echo '<a class="btn btn-default" href="new_app.php" >Ajouter une application</a>';
         foreach (getapp(false) as $item){
-           echo "Nom de l'application: ". $item['app'];
+           echo "<br>Nom de l'application: ". $item['app'];
            echo '<br>';
            echo "Auteur: ". $item['auteur'];
            echo '<br>';
